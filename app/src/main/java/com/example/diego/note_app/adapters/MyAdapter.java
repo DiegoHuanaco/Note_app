@@ -1,10 +1,12 @@
 package com.example.diego.note_app.adapters;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.example.diego.note_app.R;
@@ -47,18 +49,30 @@ public class MyAdapter extends BaseAdapter {
             vh = new ViewHolder();
             vh.nota = (TextView) convertView.findViewById(R.id.textViewNota);
             vh.id = (TextView) convertView.findViewById(R.id.textViewID);
-            convertView.setTag( vh);
+            vh.lay = (LinearLayout) convertView.findViewById(R.id.linerLayaout);
+            convertView.setTag(vh);
         } else {
             vh = (ViewHolder) convertView.getTag();
         }
         Nota n = list.get(position);
-        vh.id.setText(n.getid() + "");
+       // vh.id.setText(n.getId() + "");
         vh.nota.setText(n.getNota());
+        if (n.getColor() == 1)
+            vh.lay.setBackgroundColor(Color.BLUE);
+       else if (n.getColor() == 2)
+            vh.lay.setBackgroundColor(Color.GREEN);
+        else if (n.getColor() == 3)
+            vh.lay.setBackgroundColor(Color.MAGENTA);
+        else
+            vh.lay.setBackgroundColor(Color.WHITE);
+
 
         return convertView;
     }
+
     public class ViewHolder {
         TextView nota;
         TextView id;
+        LinearLayout lay;
     }
 }

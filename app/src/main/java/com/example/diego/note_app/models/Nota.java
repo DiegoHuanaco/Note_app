@@ -10,17 +10,11 @@ public class Nota extends RealmObject {
     @PrimaryKey
     private int id;
     private String nota;
+    private int color;
 
 
     public Nota() {} // Only for Realm
 
-    public int getid() {
-        return id;
-    }
-
-    public void setid(int id) {
-        this.id = id;
-    }
 
     public String getNota() {
         return nota;
@@ -30,9 +24,26 @@ public class Nota extends RealmObject {
         this.nota = nota;
     }
 
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getColor() {
+        return color;
+    }
+
+    public void setColor(int color) {
+        this.color = color;
+    }
+
     public Nota(String nota) {
         this.id = MyApplication.NotaID.incrementAndGet();
         this.nota = nota;
+        this.color = 0;
 
     }
 

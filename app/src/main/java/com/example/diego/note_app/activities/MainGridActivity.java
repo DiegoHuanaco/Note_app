@@ -42,6 +42,8 @@ public class MainGridActivity extends AppCompatActivity implements RealmChangeLi
     final Context context = this;
     String notas, notas2;
     int posicion;
+    int aux_color;
+    String aux_nota;
 
 
     private Realm realm;
@@ -81,7 +83,7 @@ public class MainGridActivity extends AppCompatActivity implements RealmChangeLi
         super.onCreateContextMenu(menu, v, menuInfo);
         MenuInflater inflater = getMenuInflater();
         AdapterView.AdapterContextMenuInfo info = (AdapterView.AdapterContextMenuInfo) menuInfo;
-        menu.setHeaderTitle(this.nota.get(info.position).getid() + "");
+        menu.setHeaderTitle(this.nota.get(info.position).getId() + "");
         inflater.inflate(R.menu.context_menu, menu);
     }
 
@@ -141,6 +143,63 @@ public class MainGridActivity extends AppCompatActivity implements RealmChangeLi
 
                 return true;
             }
+            case R.id.color_item:
+                posicion = info.position;
+
+                return true;
+
+            case R.id.change_item_position:
+                posicion = info.position;
+                return true;
+            case R.id.move_firts:
+                realm.beginTransaction();
+                aux_color = nota.get(0).getColor();
+                aux_nota = nota.get(0).getNota();
+                nota.get(0).setColor(nota.get(posicion).getColor());
+                nota.get(0).setNota(nota.get(posicion).getNota());
+                nota.get(posicion).setColor(aux_color);
+                nota.get(posicion).setNota(aux_nota);
+                realm.commitTransaction();
+                return true;
+
+            case R.id.move_last:
+                realm.beginTransaction();
+                aux_color = nota.get(nota.size() - 1).getColor();
+                aux_nota = nota.get(nota.size() - 1).getNota();
+                nota.get(nota.size() - 1).setColor(nota.get(posicion).getColor());
+                nota.get(nota.size() - 1).setNota(nota.get(posicion).getNota());
+                nota.get(posicion).setColor(aux_color);
+                nota.get(posicion).setNota(aux_nota);
+                //int aux_color = nota.get(0).getColor();
+                //String aux_nota = nota.get(0).getNota();
+                // nota.get(0).setColor(nota.get(info.position).getColor());
+                // nota.get(0).setNota(nota.get(info.position).getNota());
+                // nota.get(info.position).setColor(aux_color);
+                //nota.get(info.position).setNota(aux_nota);
+                realm.commitTransaction();
+                return true;
+
+            case R.id.change_item_azul:
+                realm.beginTransaction();
+                nota.get(posicion).setColor(1); // App crash
+                realm.commitTransaction();
+                return true;
+            case R.id.change_item_verde:
+                realm.beginTransaction();
+                nota.get(posicion).setColor(2); // App crash
+                realm.commitTransaction();
+                return true;
+            case R.id.change_item_rosa:
+                realm.beginTransaction();
+                nota.get(posicion).setColor(3); // App crash
+                realm.commitTransaction();
+                return true;
+            case R.id.change_item_blanco:
+                realm.beginTransaction();
+                nota.get(posicion).setColor(0); // App crash
+                realm.commitTransaction();
+                return true;
+
             default:
                 return super.onContextItemSelected(item);
         }
@@ -157,7 +216,10 @@ public class MainGridActivity extends AppCompatActivity implements RealmChangeLi
 
         switch (item.getItemId()) {
             case R.id.item_add:
+
                 addNota();
+
+
                 return true;
             default:
                 return super.onOptionsItemSelected(item);

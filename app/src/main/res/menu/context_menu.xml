@@ -4,4 +4,51 @@
         android:title="Eliminar"/>
     <item android:id="@+id/change_item"
         android:title="Modificar"/>
+    <item android:id="@+id/color_item"
+        android:title="Modificar Color">
+
+    <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+        <item
+            android:id="@+id/change_item_azul"
+            android:icon="@mipmap/ic_launcher_azul"
+            android:title="AZUL" />
+
+        <item
+            android:id="@+id/change_item_verde"
+            android:icon="@mipmap/ic_launcher_verde"
+            android:title="VERDE" />
+
+        <item
+            android:id="@+id/change_item_rosa"
+            android:icon="@mipmap/ic_launcher_rosa"
+            android:title="ROSA" />
+        <item
+            android:id="@+id/change_item_blanco"
+            android:icon="@mipmap/ic_launcher_blanco"
+            android:title="BLANCO" />
+    </menu>
+
+    </item>
+
+
+
+    <item android:id="@+id/change_item_position"
+        android:title="Modificar Lugar">
+
+        <menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+            <item
+                android:id="@+id/move_firts"
+                android:icon="@android:drawable/arrow_up_float"
+                android:title="Mover al Principio" />
+
+            <item
+                android:id="@+id/move_last"
+                android:icon="@android:drawable/arrow_down_float"
+                android:title="Mover al Final" />
+
+        </menu>
+
+    </item>
 </menu>
